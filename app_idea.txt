@@ -1,0 +1,52 @@
+Overall idea: An app that lets you split bills with your friends by scanning the receipt and claiming items in a live session. Link directly to venmo to pay necessary amount.
+
+The app should be MODERN with a simple color scheme (black and white), with pops of color like purple/blue. I'm going for a very modern feel.
+
+- Authentication (supabase)
+    - login screen
+    - sign up screen
+        - after signing up, a page to finish creating profile (display name, venmo handle, profile pic)
+    - After signed in or signed up, go to home page
+
+- Home Page
+    - two main options (cards): Host a meal or join a meal
+
+- Host meal screen
+    - scan receipt
+    - page comes up with items and prices, with ability to edit items, check items to be split (evenly or proportionally), ability to add items
+    - press start meal and you will be taken to the lobby with a code to tell other people
+
+- Join meal screen
+    - enter the code given by host
+    - if successfully joined, go to lobby screen
+
+- Lobby
+    - see who is hosting, who has joined and see the code still
+    - if host, a button to start splitting
+    - if guest, a message saying waiting for host to enable splitting
+    - host can terminate session and guest can leave session
+
+- Splitting screen (take advantage of supabase realtime)
+    - each item listed. click item to claim, or click a button called "split"
+    - a claimed item will be not selectable by anyone else, have an indicator of who has it selected, and will be able to be unselected by the person who selected it
+    - when you click split on an item, you will decide how many ways to split it, and it will be split that many ways with the price split as well (displayed under one block but will look like x items that each say 1/x of original block)
+    - each person can claim a split item, or have the option to recombine into original item
+    - once someone is happy with what they have selected, they click "done" and will be brought to a confirmation screen
+
+- Confirmation screen
+    - summary of items selected and price
+    - total price
+    - host's venmo handle with ability to copy
+    - button to pay host, which will take you to the venmo pay page (just a link to venmo)
+    - Button to return home
+
+- History Page
+    - display past meals
+    - when you click on one, detail page (or just expanded list item) of who hosted, what you paid (or were paid), what items you got, who was there, etc.
+
+- Profile page
+    - display profile photo, display name, venmo username, etc.
+    - edit button which makes all fields editable
+    - edit page should also have a button to change password
+    - logout button
+
