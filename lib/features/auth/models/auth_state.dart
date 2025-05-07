@@ -3,7 +3,8 @@ class AuthState {
   final bool isAuthenticated;
   final String? userId;
   final String? email;
-  final String? displayName;
+  final String? firstName;
+  final String? lastName;
   final String? venmoHandle;
   final String? profileImageUrl;
   final bool isProfileComplete;
@@ -14,7 +15,8 @@ class AuthState {
     this.isAuthenticated = false,
     this.userId,
     this.email,
-    this.displayName,
+    this.firstName,
+    this.lastName,
     this.venmoHandle,
     this.profileImageUrl,
     this.isProfileComplete = false,
@@ -26,7 +28,8 @@ class AuthState {
     bool? isAuthenticated,
     String? userId,
     String? email,
-    String? displayName,
+    String? firstName,
+    String? lastName,
     String? venmoHandle,
     String? profileImageUrl,
     bool? isProfileComplete,
@@ -37,11 +40,24 @@ class AuthState {
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
       userId: userId ?? this.userId,
       email: email ?? this.email,
-      displayName: displayName ?? this.displayName,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
       venmoHandle: venmoHandle ?? this.venmoHandle,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
       isProfileComplete: isProfileComplete ?? this.isProfileComplete,
       errorMessage: errorMessage ?? this.errorMessage,
     );
+  }
+
+  // Helper method to get full name
+  String? get fullName {
+    if (firstName != null && lastName != null) {
+      return '$firstName $lastName';
+    } else if (firstName != null) {
+      return firstName;
+    } else if (lastName != null) {
+      return lastName;
+    }
+    return null;
   }
 }

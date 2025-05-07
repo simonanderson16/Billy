@@ -16,7 +16,8 @@ class EditProfileScreen extends ConsumerStatefulWidget {
 
 class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   final _formKey = GlobalKey<FormState>();
-  late final TextEditingController _displayNameController;
+  late final TextEditingController _firstNameController;
+  late final TextEditingController _lastNameController;
   late final TextEditingController _venmoHandleController;
 
   File? _newProfileImage;
@@ -27,13 +28,15 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   void initState() {
     super.initState();
     final authState = ref.read(authControllerProvider);
-    _displayNameController = TextEditingController(text: authState.displayName);
+    _firstNameController = TextEditingController(text: authState.firstName);
+    _lastNameController = TextEditingController(text: authState.lastName);
     _venmoHandleController = TextEditingController(text: authState.venmoHandle);
   }
 
   @override
   void dispose() {
-    _displayNameController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
     _venmoHandleController.dispose();
     super.dispose();
   }
@@ -71,7 +74,8 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
         await ref
             .read(authControllerProvider.notifier)
             .updateUserProfile(
-              displayName: _displayNameController.text.trim(),
+              firstName: _firstNameController.text.trim(),
+              lastName: _lastNameController.text.trim(),
               venmoHandle: _venmoHandleController.text.trim(),
               profileImage: imageBytes,
               fileName: fileName,
@@ -219,16 +223,31 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                     child: const Text('Change Profile Picture'),
                   ),
                   const SizedBox(height: 24),
-                  // Display name
+                  // First name
                   TextFormField(
-                    controller: _displayNameController,
+                    controller: _firstNameController,
                     decoration: const InputDecoration(
-                      labelText: 'Display Name',
+                      labelText: 'First Name',
                       prefixIcon: Icon(Icons.person_outline),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your display name';
+                        return 'Please enter your first name';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16),
+                  // Last name
+                  TextFormField(
+                    controller: _lastNameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Last Name',
+                      prefixIcon: Icon(Icons.person_outline),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter your last name';
                       }
                       return null;
                     },

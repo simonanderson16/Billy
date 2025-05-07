@@ -121,7 +121,8 @@ class AuthRepository {
         final userModel = UserModel(
           id: user.id,
           email: user.email ?? '',
-          displayName: response['display_name'],
+          firstName: response['first_name'],
+          lastName: response['last_name'],
           venmoHandle: response['venmo_handle'],
           profileImageUrl: response['profile_image_url'],
           isProfileComplete: response['is_profile_complete'] ?? false,
@@ -144,7 +145,8 @@ class AuthRepository {
   // Update user profile
   Future<UserModel?> updateUserProfile({
     required String userId,
-    String? displayName,
+    String? firstName,
+    String? lastName,
     String? venmoHandle,
     String? profileImageUrl,
   }) async {
@@ -158,7 +160,8 @@ class AuthRepository {
       final updateData = {
         'id': userId,
         'email': user.email,
-        'display_name': displayName,
+        'first_name': firstName,
+        'last_name': lastName,
         'venmo_handle': venmoHandle,
         'profile_image_url': profileImageUrl,
         'is_profile_complete': true,

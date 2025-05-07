@@ -77,9 +77,9 @@ class ProfileScreen extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(height: 24),
-                      // Display name
+                      // Full name
                       Text(
-                        authState.displayName ?? 'No Name Set',
+                        authState.fullName ?? 'No Name Set',
                         style: Theme.of(
                           context,
                         ).textTheme.headlineMedium?.copyWith(

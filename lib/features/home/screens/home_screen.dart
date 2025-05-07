@@ -45,7 +45,7 @@ class HomeScreen extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                'Welcome ${authState.displayName ?? 'User'}!',
+                'Welcome, ${authState.firstName ?? 'User'}!',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppTheme.blackColor,

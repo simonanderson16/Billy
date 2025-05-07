@@ -42,7 +42,8 @@ class AuthController extends StateNotifier<AuthState> {
             isAuthenticated: true,
             userId: user.id,
             email: user.email,
-            displayName: user.displayName,
+            firstName: user.firstName,
+            lastName: user.lastName,
             venmoHandle: user.venmoHandle,
             profileImageUrl: user.profileImageUrl,
             isProfileComplete: user.isProfileComplete,
@@ -77,7 +78,8 @@ class AuthController extends StateNotifier<AuthState> {
           isAuthenticated: true,
           userId: user.id,
           email: user.email,
-          displayName: user.displayName,
+          firstName: user.firstName,
+          lastName: user.lastName,
           venmoHandle: user.venmoHandle,
           profileImageUrl: user.profileImageUrl,
           isProfileComplete: user.isProfileComplete,
@@ -114,7 +116,8 @@ class AuthController extends StateNotifier<AuthState> {
           isAuthenticated: true,
           userId: user.id,
           email: user.email,
-          displayName: user.displayName,
+          firstName: user.firstName,
+          lastName: user.lastName,
           venmoHandle: user.venmoHandle,
           profileImageUrl: user.profileImageUrl,
           isProfileComplete: user.isProfileComplete,
@@ -149,7 +152,8 @@ class AuthController extends StateNotifier<AuthState> {
 
   // Update user profile
   Future<void> updateUserProfile({
-    required String displayName,
+    required String firstName,
+    required String lastName,
     required String venmoHandle,
     Uint8List? profileImage,
     String? fileName,
@@ -185,7 +189,8 @@ class AuthController extends StateNotifier<AuthState> {
       // Update user profile
       final updatedUser = await _authRepository.updateUserProfile(
         userId: userId,
-        displayName: displayName,
+        firstName: firstName,
+        lastName: lastName,
         venmoHandle: venmoHandle,
         profileImageUrl: profileImageUrl,
       );
@@ -196,7 +201,8 @@ class AuthController extends StateNotifier<AuthState> {
           isAuthenticated: true,
           userId: updatedUser.id,
           email: updatedUser.email,
-          displayName: updatedUser.displayName,
+          firstName: updatedUser.firstName,
+          lastName: updatedUser.lastName,
           venmoHandle: updatedUser.venmoHandle,
           profileImageUrl: updatedUser.profileImageUrl,
           isProfileComplete: updatedUser.isProfileComplete,

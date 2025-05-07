@@ -1,7 +1,8 @@
 class UserModel {
   final String id;
   final String email;
-  final String? displayName;
+  final String? firstName;
+  final String? lastName;
   final String? venmoHandle;
   final String? profileImageUrl;
   final bool isProfileComplete;
@@ -9,7 +10,8 @@ class UserModel {
   const UserModel({
     required this.id,
     required this.email,
-    this.displayName,
+    this.firstName,
+    this.lastName,
     this.venmoHandle,
     this.profileImageUrl,
     this.isProfileComplete = false,
@@ -19,7 +21,8 @@ class UserModel {
     return UserModel(
       id: json['id'] as String,
       email: json['email'] as String,
-      displayName: json['display_name'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
       venmoHandle: json['venmo_handle'] as String?,
       profileImageUrl: json['profile_image_url'] as String?,
       isProfileComplete: json['is_profile_complete'] as bool? ?? false,
@@ -30,7 +33,8 @@ class UserModel {
     return {
       'id': id,
       'email': email,
-      'display_name': displayName,
+      'first_name': firstName,
+      'last_name': lastName,
       'venmo_handle': venmoHandle,
       'profile_image_url': profileImageUrl,
       'is_profile_complete': isProfileComplete,
@@ -40,7 +44,8 @@ class UserModel {
   UserModel copyWith({
     String? id,
     String? email,
-    String? displayName,
+    String? firstName,
+    String? lastName,
     String? venmoHandle,
     String? profileImageUrl,
     bool? isProfileComplete,
@@ -48,11 +53,24 @@ class UserModel {
     return UserModel(
       id: id ?? this.id,
       email: email ?? this.email,
-      displayName: displayName ?? this.displayName,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
       venmoHandle: venmoHandle ?? this.venmoHandle,
       profileImageUrl: profileImageUrl ?? this.profileImageUrl,
       isProfileComplete: isProfileComplete ?? this.isProfileComplete,
     );
+  }
+
+  // Helper method to get full name
+  String? get fullName {
+    if (firstName != null && lastName != null) {
+      return '$firstName $lastName';
+    } else if (firstName != null) {
+      return firstName;
+    } else if (lastName != null) {
+      return lastName;
+    }
+    return null;
   }
 
   static UserModel empty() {

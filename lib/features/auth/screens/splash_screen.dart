@@ -28,7 +28,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
     // Debug print to show auth state
     print(
-      'Auth State: isAuthenticated=${authState.isAuthenticated}, isProfileComplete=${authState.isProfileComplete}, displayName=${authState.displayName}',
+      'Auth State: isAuthenticated=${authState.isAuthenticated}, isProfileComplete=${authState.isProfileComplete}, name=${authState.firstName} ${authState.lastName}',
     );
 
     if (authState.isAuthenticated) {
