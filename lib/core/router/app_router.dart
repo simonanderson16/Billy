@@ -7,6 +7,7 @@ import 'package:billy/features/profile/screens/profile_screen.dart';
 import 'package:billy/features/profile/screens/edit_profile_screen.dart';
 import 'package:billy/features/home/screens/home_screen.dart';
 import 'package:billy/features/history/screens/history_screen.dart';
+import 'package:billy/features/meal/screens/host_meal_screen.dart';
 
 class AppRouter {
   static const String splashRoute = '/';
@@ -17,6 +18,7 @@ class AppRouter {
   static const String editProfileRoute = '/edit-profile';
   static const String homeRoute = '/home';
   static const String historyRoute = '/history';
+  static const String hostMealRoute = '/host-meal';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -36,6 +38,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case historyRoute:
         return MaterialPageRoute(builder: (_) => const HistoryScreen());
+      case hostMealRoute:
+        return MaterialPageRoute(builder: (_) => const HostMealScreen());
       default:
         return MaterialPageRoute(
           builder:

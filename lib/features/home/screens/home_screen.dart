@@ -70,7 +70,7 @@ class HomeScreen extends ConsumerWidget {
                   icon: Icons.receipt_long,
                   color: AppTheme.primaryColor,
                   onTap: () {
-                    // TODO: Navigate to host meal screen
+                    Navigator.of(context).pushNamed(AppRouter.hostMealRoute);
                   },
                 ),
               ),
